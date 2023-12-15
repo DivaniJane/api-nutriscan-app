@@ -5,11 +5,12 @@ const homeRouter = require('./routes/home')
 app.use(homeRouter)
 
 app.get("/", (req, res) => {
-    console.log("Response success")
-    res.send("Response Success!")
-})
+    console.log('Response success');
+    res.send('Response Success!');
+});
 
-// const PORT = process.env.PORT || 8000
-// app.listen(PORT, () => {
-//     console.log("Server is up and listening on " + PORT)
-// })
+
+const port = 9000;
+app.listen(port, () => {
+  console.log(`Server berjalan di http://localhost:${port}`);
+});

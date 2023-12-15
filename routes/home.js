@@ -1,8 +1,6 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
-const router = express.Router()
-const app = express();
-const port = 9000;
+const router = express.Router();
 
 // Konfigurasi koneksi MySQL
 const dbConfig = {
@@ -13,10 +11,10 @@ const dbConfig = {
 };
 
 // Middleware untuk parsing body dari request
-app.use(express.json());
+router.use(express.json());
 
 // Route untuk mendapatkan semua data makanan
-app.get('/getAllFoods', async (req, res) => {
+router.get('/getAllFoods', async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
     const [rows] = await connection.execute('SELECT nama_makanan, deskripsi, harga FROM home');
@@ -29,7 +27,7 @@ app.get('/getAllFoods', async (req, res) => {
 });
 
 // Route untuk mencari makanan berdasarkan nama
-app.get('/getSearch', async (req, res) => {
+router.get('/getSearch', async (req, res) => {
   const { nama } = req.query;
   if (!nama) {
     return res.status(400).json({ error: 'Parameter nama harus disertakan' });
@@ -47,7 +45,7 @@ app.get('/getSearch', async (req, res) => {
 });
 
 // Route untuk mendapatkan resep makanan berdasarkan ID
-app.get('/getRecipe/:id', async (req, res) => {
+router.get('/getRecipe/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -66,8 +64,4 @@ app.get('/getRecipe/:id', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server berjalan di http://localhost:${port}`);
-});
-
-module.exports = router
+module.exports = router;
