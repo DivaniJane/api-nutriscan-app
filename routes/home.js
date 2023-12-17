@@ -4,16 +4,17 @@ const router = express.Router();
 
 // Konfigurasi koneksi MySQL
 const dbConfig = {
-  host: 'localhost',
+  host: '34.101.245.246',
   user: 'root',
-  password: '',
-  database: 'food_calorie',
+  password: 'cobamoney',
+  // database: 'food_calorie',
+  database: 'nutridb',
 };
 
 // Middleware untuk parsing body dari request
 router.use(express.json());
 
-// Route untuk mendapatkan semua data makanan
+// // Route untuk mendapatkan semua data makanan
 router.get('/getAllFoods', async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);

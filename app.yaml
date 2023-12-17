@@ -1,2 +1,7 @@
 runtime: nodejs16
+env: standard
 service: backend
+
+handlers:
+  - url: /
+    script: app.js
